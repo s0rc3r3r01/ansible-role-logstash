@@ -1,16 +1,4 @@
 ---
-- name: Create Logstash configuration files.
-  template:
-    src: "{{ item }}.j2"
-    dest: "/etc/logstash/conf.d/{{ item }}"
-    owner: root
-    group: root
-    mode: 0644
-  with_items:
-    - 01-beats-input.conf
-    - 30-elasticsearch-output.conf
-  notify: restart logstash
-
 - name: Create Logstash filters.
   copy:
     src: "filters/{{ item }}"
